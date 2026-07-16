@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Church in Toronto West: our faith, standing, practice, administration, and church life." />
+  <title>&#20851;&#20110;&#25105;&#20204; | Church in Toronto West</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { ink: '#171717', warm: '#d97706', cream: '#faf7f2' }, fontFamily: { sans: ['Inter', 'Noto Sans SC', 'Noto Sans TC', 'system-ui', 'sans-serif'] }, boxShadow: { soft: '0 20px 60px -30px rgba(23, 23, 23, 0.22)' } } } };
+  </script>
+  <style>body { text-rendering: optimizeLegibility; }</style>
+</head>
+<body class="bg-white font-sans text-ink antialiased selection:bg-amber-200">
+  <header class="sticky top-0 z-50 border-b border-neutral-200/80 bg-white/90 backdrop-blur-xl">
+    <nav class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8" aria-label="Main navigation">
+      <a href="index.html" class="flex items-center" aria-label="Church in Toronto West home"><span class="max-w-[190px] text-sm font-semibold leading-tight tracking-tight sm:max-w-none sm:text-base">Church in Toronto West</span></a>
+      <div class="hidden items-center gap-6 lg:flex">
+        <a href="index.html#home" class="text-sm font-medium text-neutral-600 transition hover:text-warm" data-i18n="navHome">&#39318;&#39029;</a>
+        <a href="index.html#gatherings" class="text-sm font-medium text-neutral-600 transition hover:text-warm" data-i18n="navGatherings">&#32858;&#20250;&#20449;&#24687;</a>
+        <a href="index.html#events" class="text-sm font-medium text-neutral-600 transition hover:text-warm" data-i18n="navEvents">&#36817;&#26399;&#27963;&#21160;</a>
+        <a href="index.html#media" class="text-sm font-medium text-neutral-600 transition hover:text-warm" data-i18n="navMedia">&#23186;&#20307;</a>
+        <a href="about.html" class="text-sm font-semibold text-warm" data-i18n="navAbout" aria-current="page">&#20851;&#20110;&#25105;&#20204;</a>
+        <a href="index.html#contact" class="text-sm font-medium text-neutral-600 transition hover:text-warm" data-i18n="navContact">&#32852;&#31995;&#25105;&#20204;</a>
+      </div>
+      <div class="hidden items-center gap-1 rounded-full border border-neutral-200 bg-neutral-50 p-1 sm:flex" aria-label="Language selector">
+        <button class="lang-btn rounded-full bg-ink px-3 py-2 text-xs font-semibold text-white transition" data-lang="zh-CN" aria-pressed="true">&#31616;</button>
+        <button class="lang-btn rounded-full px-3 py-2 text-xs font-semibold text-neutral-600 transition hover:bg-white" data-lang="zh-TW" aria-pressed="false">&#32321;</button>
+        <button class="lang-btn rounded-full px-3 py-2 text-xs font-semibold text-neutral-600 transition hover:bg-white" data-lang="en" aria-pressed="false">EN</button>
+        <button class="lang-btn rounded-full px-3 py-2 text-xs font-semibold text-neutral-600 transition hover:bg-white" data-lang="fr" aria-pressed="false">FR</button>
+      </div>
+      <button id="menuButton" class="grid h-11 w-11 place-items-center rounded-full border border-neutral-200 lg:hidden" aria-label="Open menu" aria-expanded="false"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg></button>
+    </nav>
+    <div id="mobileMenu" class="hidden border-t border-neutral-200 bg-white px-5 py-5 lg:hidden">
+      <div class="mx-auto flex max-w-7xl flex-col gap-1">
+        <a href="index.html#home" class="rounded-xl px-4 py-3 font-medium hover:bg-neutral-50" data-i18n="navHome">&#39318;&#39029;</a>
+        <a href="index.html#gatherings" class="rounded-xl px-4 py-3 font-medium hover:bg-neutral-50" data-i18n="navGatherings">&#32858;&#20250;&#20449;&#24687;</a>
+        <a href="index.html#events" class="rounded-xl px-4 py-3 font-medium hover:bg-neutral-50" data-i18n="navEvents">&#36817;&#26399;&#27963;&#21160;</a>
+        <a href="index.html#media" class="rounded-xl px-4 py-3 font-medium hover:bg-neutral-50" data-i18n="navMedia">&#23186;&#20307;</a>
+        <a href="about.html" class="rounded-xl bg-amber-50 px-4 py-3 font-semibold text-warm" data-i18n="navAbout" aria-current="page">&#20851;&#20110;&#25105;&#20204;</a>
+        <a href="index.html#contact" class="rounded-xl px-4 py-3 font-medium hover:bg-neutral-50" data-i18n="navContact">&#32852;&#31995;&#25105;&#20204;</a>
+        <div class="mt-3 flex gap-2 border-t border-neutral-100 pt-4 sm:hidden">
+          <button class="lang-btn rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white" data-lang="zh-CN" aria-pressed="true">&#31616;</button>
+          <button class="lang-btn rounded-full border border-neutral-200 px-4 py-2 text-xs font-semibold" data-lang="zh-TW" aria-pressed="false">&#32321;</button>
+          <button class="lang-btn rounded-full border border-neutral-200 px-4 py-2 text-xs font-semibold" data-lang="en" aria-pressed="false">EN</button>
+          <button class="lang-btn rounded-full border border-neutral-200 px-4 py-2 text-xs font-semibold" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="relative overflow-hidden bg-cream">
+      <div class="absolute -right-20 -top-32 h-96 w-96 rounded-full bg-amber-200/35 blur-3xl"></div>
+      <div class="relative mx-auto max-w-5xl px-5 py-20 sm:px-8 lg:py-28">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-semibold text-amber-700 transition hover:gap-3"><span>&larr;</span><span data-i18n="backHome">&#36820;&#22238;&#39318;&#39029;</span></a>
+        <p class="mt-12 text-xs font-bold uppercase tracking-[.22em] text-amber-700" data-i18n="aboutEyebrow">&#35748;&#35782;&#25105;&#20204;</p>
+        <h1 class="mt-4 text-5xl font-semibold tracking-[-.04em] sm:text-6xl" data-i18n="aboutTitle">&#20851;&#20110;&#25105;&#20204;</h1>
+        <p class="mt-6 max-w-3xl text-lg leading-8 text-neutral-600" data-i18n="aboutIntro">&#20197;&#19979;&#20869;&#23481;&#20171;&#32461;&#25105;&#20204;&#30340;&#20449;&#20208;&#12289;&#31435;&#22330;&#12289;&#23454;&#34892;&#12289;&#34892;&#25919;&#19982;&#29983;&#27963;&#12290;</p>
+        <p class="mt-4 text-sm text-neutral-500" data-i18n="languageNote">&#20449;&#20208;&#27491;&#25991;&#20381;&#29031;&#21407;&#22987;&#25991;&#20214;&#65292;&#20197;&#20013;&#25991;&#21576;&#29616;&#12290;</p>
+      </div>
+    </section>
+    <div class="mx-auto max-w-5xl space-y-8 px-5 py-16 sm:px-8 lg:py-24">
+      <section class="rounded-3xl border border-amber-200 bg-[#fffaf2] p-7 shadow-soft sm:p-10">
+        <div class="flex items-center gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-amber-100 text-amber-800 font-semibold">01</span><h2 class="text-3xl font-semibold tracking-tight">我们的信仰</h2></div>
+        <div class="mt-8 space-y-5 leading-8 text-neutral-700">
+          <p>一、我们相信全本圣经是神完整的启示，字字都是圣灵所默示的。[罗十六26, 提后三16, 彼后一19-21, 启二二18-19]</p>
+          <p>二、我们相信神是独一的三一神，父、子、灵同等，共存，从亘古到永远。[太三16-17, 二八19, 启一4-5]</p>
+          <p>三、我们相信神的儿子，就是神自己，成为肉身，成为人，名叫耶稣，由童女马利亚所生，来作我们的救赎主和救主。[太一20-25, 约一1,14,29]</p>
+          <p>四、我们相信耶稣是真正且完全的人，曾在地上生活三十三年半，使人认识父神。[约一18, 十四7-11, 来一3]</p>
+          <p>五、我们相信耶稣是神用圣灵所膏的基督，为我们的罪死在十字架上，流血为我们成功了救赎。[太三16-17, 罗五8, 林前十五3, 多二14]</p>
+          <p>六、我们相信耶稣基督埋葬以后，第三日从死里復活（肉身上和灵性上）；并在復活里成为赐生命的灵，将祂自己分赐到我们里面，作我们的生命和一切。[林前十五4,44-45, 西三4,11]</p>
+          <p>七、我们相信基督復活后升到天上，被神立为万有的主。[徒二33,36, 腓二8-11, 启十一15]</p>
+          <p>八、我们相信基督升天以后，将神的灵浇灌下来，把祂所拣选的肢体浸入一个身体里；神的灵，也就是基督的灵，今天在地上运行，叫罪人知罪，重生神所拣选的人，住在基督的众肢体里，使他们在生命里长大，并建造基督的身体，让祂得着完满的彰显。[约十六7-9, 林前十二12-13, 弗四4,16]</p>
+          <p>九、我们相信在这世代的末了，基督要回来提接祂的众肢体，审判世界，得着全地，并建立祂永远的国度。[帖前四15-17, 徒十七31]</p>
+          <p>十、我们相信得胜的圣徒要在千年国度里与基督一同作王掌权；并且所有在基督里的信徒，都将有分于新天新地新耶路撒冷里神圣的福分，直到永远。[林前二9, 启二26-27, 十一15, 二二17]</p>
+        </div>
+      </section>
+      <section class="rounded-3xl border border-neutral-200 bg-white p-7 shadow-soft sm:p-10">
+        <div class="flex items-center gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-neutral-100 text-neutral-700 font-semibold">02</span><h2 class="text-3xl font-semibold tracking-tight">我们的立场</h2></div>
+        <div class="mt-8 space-y-5 leading-8 text-neutral-700">
+          <p>一、我们持定圣经，但不是按着任何传统的解说，而是遵照神纯正的话语。[彼后一19-20]</p>
+          <p>二、我们持定基督，祂是活石，基石，身体的头，也是教会的生命和实际。[林前三11, 弗一22-23]</p>
+          <p>三、我们持定基督身体的真合一。我们不是结党，不是宗派，不是无宗派，也不是在宗派之间。[弗四4, 林前三4, 林前一10-13]</p>
+          <p>四、我们在各地站住所有信徒合一的立场；凡是在基督里蒙宝血救赎，由圣灵重生的信徒，我们都承认他们是当地教会中的肢体。[林前十17, 罗十四1, 十五7]</p>
+        </div>
+      </section>
+      <section class="rounded-3xl border border-neutral-200 bg-white p-7 shadow-soft sm:p-10">
+        <div class="flex items-center gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-neutral-100 text-neutral-700 font-semibold">03</span><h2 class="text-3xl font-semibold tracking-tight">我们的实行</h2></div>
+        <div class="mt-8 space-y-5 leading-8 text-neutral-700">
+          <p>一、我们见证基督这一个宇宙的身体，并竭力使之彰显在多伦多这个地方(林前十二12,27)。我们与本地所有的信徒站在地方合一的立场，并竭力接纳主所接纳所有的信徒(罗十五7)。</p>
+          <p>二、我们根据在以弗所书四章4至6节所记载的七个『一』，以和平的联索竭力保守那灵的一。这七个『一』就是一个身体、一位灵、一个盼望，一主、一信、一浸和一位众人的神与父，就是那超乎众人，贯乎众人，也在众人之内的。</p>
+          <p>三、我们认定在一个身体里，在各肢体中，恩赐有分别，职事有分别，功效也有分别（林前十二4-6）。我们根据这样的看见竭力的成全当地圣徒。</p>
+          <p>四、因着基督的身体是宇宙的，我们竭力与全地的衆教会有良好的交通；特别是为着实行的目的与邻近的众教会有交通（罗十六16下）。</p>
+          <p>五、我们渴望从那些在教会生活中经歷并彰显主祝福的教会有学习（帖前一7-8,二14上）。</p>
+          <p>六、我们竭力留在主在地上的恢復里。我们认识到这恢復包括真理的恢復，生命的恢復，对基督之经歷的恢復以及在地方立场上之教会生活实行的恢復。</p>
+          <p>七、我们承认在已过许多世纪以来，主兴起许多的执事们。我们也鼓励圣徒们被这些职事的丰富来构成（弗四11,13, 提后二2）。</p>
+          <p>八、我们根据以下的认识，竭力接纳那些建造基督的身体并且给多伦多教会带来益处的众职事：（1）爲着建造基督的身体只有一个独一的新约职事。就是圣经上记载的『新约的职事』，『那灵的职事』（林后三6-9）。但在这独一的职事里，有许多的执事（林后四1）和许多的职事（林前十二5）。（2）所有的职事都该是爲着建造地方上的教会，而教会不该是爲着职事（林前三21-23）。</p>
+        </div>
+      </section>
+      <section class="rounded-3xl border border-neutral-200 bg-white p-7 shadow-soft sm:p-10">
+        <div class="flex items-center gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-neutral-100 text-neutral-700 font-semibold">04</span><h2 class="text-3xl font-semibold tracking-tight">我们的行政</h2></div>
+        <div class="mt-8 space-y-5 leading-8 text-neutral-700">
+          <p>九、教会的行政是地方的，由一班同在元首基督之下的长老们来执行（徒十四23, 多一5）。在长老职分中有一个共同的带领。由于长老们竭力服在元首基督之下，所以，我们鼓励所有的圣徒爲长老们祷告并且与教会的带领一致（来十三7,17）。</p>
+          <p>十、我们鼓励圣徒们爲着基督徒生活和教会生活而在主面前寻求带领。但是爲着带给圣徒们合适的扶持和遮盖，任何可能影响到教会生活的一些圣徒们的活动，应该先与长老们或区负责们有交通，以便藉着交通使之给教会生活带来益处（帖前五12-13）。</p>
+          <p>十一、现在，教会生活是以会所、区和小排划分。任何圣徒有需求或有渴望改变他们所在的会所、区或小排，请圣徒们先与所在地的负责弟兄有交通。这样的实行不但是甜美的，更是爲着他们的遮盖，并合适的把他们介绍给新的所在。</p>
+        </div>
+      </section>
+      <section class="rounded-3xl border border-amber-200 bg-[#fffaf2] p-7 shadow-soft sm:p-10">
+        <div class="flex items-center gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-amber-100 text-amber-800 font-semibold">05</span><h2 class="text-3xl font-semibold tracking-tight">我们的生活</h2></div>
+        <div class="mt-8 space-y-5 leading-8 text-neutral-700">
+          <p>十二、正如长老们是彼此顺服，并且竭力同心合意，我们劝勉所有的圣徒都彼此和谐，彼此相爱，并且不坚持自己的观点，方法和意见（弗五21, 彼前四8-9, 约壹四7）。</p>
+          <p>十三、多伦多教会是由来自于许多国家中有着不同的背景，有着各种教会生活经歷的圣徒所组成。因此，我们鼓励圣徒们藉着彼此相调溶入丰富、和谐的教会生活，而不是坚持或设法把他们以往实行教会生活的经歷强加给这里的多伦多教会（彼前三8-9)。</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="border-t border-neutral-200 bg-cream"><div class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-10 text-sm text-neutral-500 sm:flex-row sm:items-center sm:justify-between sm:px-8"><p>&copy; <span id="year"></span> Church in Toronto West. <span data-i18n="rights">&#29256;&#26435;&#25152;&#26377;&#12290;</span></p><a href="index.html#contact" class="font-semibold text-amber-700 hover:text-amber-900" data-i18n="contactUs">&#32852;&#31995;&#25105;&#20204; &rarr;</a></div></footer>
+  <script>
+    const translations = {
+      'zh-CN': { navHome:'\u9996\u9875',navGatherings:'\u805a\u4f1a\u4fe1\u606f',navEvents:'\u8fd1\u671f\u6d3b\u52a8',navMedia:'\u5a92\u4f53',navAbout:'\u5173\u4e8e\u6211\u4eec',navContact:'\u8054\u7cfb\u6211\u4eec',backHome:'\u8fd4\u56de\u9996\u9875',aboutEyebrow:'\u8ba4\u8bc6\u6211\u4eec',aboutTitle:'\u5173\u4e8e\u6211\u4eec',aboutIntro:'\u4ee5\u4e0b\u5185\u5bb9\u4ecb\u7ecd\u6211\u4eec\u7684\u4fe1\u4ef0\u3001\u7acb\u573a\u3001\u5b9e\u884c\u3001\u884c\u653f\u4e0e\u751f\u6d3b\u3002',languageNote:'\u4fe1\u4ef0\u6b63\u6587\u4f9d\u7167\u539f\u59cb\u6587\u4ef6\uff0c\u4ee5\u4e2d\u6587\u5448\u73b0\u3002',rights:'\u7248\u6743\u6240\u6709\u3002',contactUs:'\u8054\u7cfb\u6211\u4eec \u2192' },
+      'zh-TW': { navHome:'\u9996\u9801',navGatherings:'\u805a\u6703\u8cc7\u8a0a',navEvents:'\u8fd1\u671f\u6d3b\u52d5',navMedia:'\u5a92\u9ad4',navAbout:'\u95dc\u65bc\u6211\u5011',navContact:'\u806f\u7d61\u6211\u5011',backHome:'\u8fd4\u56de\u9996\u9801',aboutEyebrow:'\u8a8d\u8b58\u6211\u5011',aboutTitle:'\u95dc\u65bc\u6211\u5011',aboutIntro:'\u4ee5\u4e0b\u5167\u5bb9\u4ecb\u7d39\u6211\u5011\u7684\u4fe1\u4ef0\u3001\u7acb\u5834\u3001\u5be6\u884c\u3001\u884c\u653f\u8207\u751f\u6d3b\u3002',languageNote:'\u4fe1\u4ef0\u6b63\u6587\u4f9d\u7167\u539f\u59cb\u6587\u4ef6\uff0c\u4ee5\u4e2d\u6587\u5448\u73fe\u3002',rights:'\u7248\u6b0a\u6240\u6709\u3002',contactUs:'\u806f\u7d61\u6211\u5011 \u2192' },
+      en: { navHome:'Home',navGatherings:'Gatherings',navEvents:'Events',navMedia:'Media',navAbout:'About us',navContact:'Contact',backHome:'Back to home',aboutEyebrow:'Get to know us',aboutTitle:'About us',aboutIntro:'Learn about our faith, standing, practice, administration, and church life.',languageNote:'The statement content is presented in Chinese as supplied in the source document.',rights:'All rights reserved.',contactUs:'Contact us \u2192' },
+      fr: { navHome:'Accueil',navGatherings:'Rencontres',navEvents:'\u00c9v\u00e9nements',navMedia:'M\u00e9dias',navAbout:'\u00c0 propos',navContact:'Contact',backHome:'Retour \u00e0 l\u2019accueil',aboutEyebrow:'Mieux nous conna\u00eetre',aboutTitle:'\u00c0 propos',aboutIntro:'D\u00e9couvrez notre foi, notre position, notre pratique, notre administration et notre vie d\u2019\u00e9glise.',languageNote:'Le contenu doctrinal est pr\u00e9sent\u00e9 en chinois, conform\u00e9ment au document source.',rights:'Tous droits r\u00e9serv\u00e9s.',contactUs:'Nous contacter \u2192' }
+    };
+    function setLanguage(lang) { const d=translations[lang]||translations['zh-CN']; document.documentElement.lang=lang; document.querySelectorAll('[data-i18n]').forEach(n=>{const v=d[n.dataset.i18n];if(v!==undefined)n.innerHTML=v}); document.querySelectorAll('.lang-btn').forEach(b=>{const a=b.dataset.lang===lang;b.setAttribute('aria-pressed',a);b.classList.toggle('bg-ink',a);b.classList.toggle('text-white',a);b.classList.toggle('border',!a);b.classList.toggle('border-neutral-200',!a);b.classList.toggle('text-neutral-600',!a)}); try{localStorage.setItem('citw-language',lang)}catch(_){} }
+    document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
+    const menuButton=document.getElementById('menuButton'); const mobileMenu=document.getElementById('mobileMenu'); menuButton.addEventListener('click',()=>{const open=!mobileMenu.classList.toggle('hidden');menuButton.setAttribute('aria-expanded',open)});
+    document.getElementById('year').textContent=new Date().getFullYear(); let savedLanguage='zh-CN'; try{savedLanguage=localStorage.getItem('citw-language')||'zh-CN'}catch(_){} setLanguage(savedLanguage);
+  </script>
+</body>
+</html>
