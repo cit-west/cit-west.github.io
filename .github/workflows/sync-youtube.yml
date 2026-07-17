@@ -1,0 +1,48 @@
+name: Sync YouTube videos
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/sync-youtube.yml"
+      - "scripts/sync-youtube.mjs"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-youtube-videos
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch latest YouTube videos
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/sync-youtube.mjs
+
+      - name: Commit updated video data
+        run: |
+          if git diff --quiet -- data/youtube-videos.json data/youtube-heartbeat.json; then
+            echo "No video or heartbeat changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/youtube-videos.json data/youtube-heartbeat.json
+          git commit -m "chore: sync YouTube videos"
+          git push

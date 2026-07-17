@@ -179,20 +179,12 @@
         <h2 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl" data-i18n="mediaTitle">媒体与信息分享</h2>
         <p class="mt-5 text-lg leading-8 text-neutral-600" data-i18n="mediaIntro">重温主日信息和教会生活片段。以下为 YouTube 嵌入视频内容。</p>
       </div>
-      <div class="mt-12 grid gap-7 lg:grid-cols-2">
-        <article>
-          <div class="aspect-video overflow-hidden rounded-3xl bg-neutral-100 shadow-soft">
-            <iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/rA97n8_SHXg" title="Church in Toronto West YouTube video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
-          <p class="mt-4 text-sm font-semibold" data-i18n="videoOne">教会视频 · 主日信息</p>
-        </article>
-        <article>
-          <div class="aspect-video overflow-hidden rounded-3xl bg-neutral-100 shadow-soft">
-            <iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/VIDEO_ID_2" title="YouTube video placeholder 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
-          <p class="mt-4 text-sm font-semibold" data-i18n="videoTwo">[YouTube 视频占位符 2] · 教会生活</p>
-        </article>
+      <div id="youtubeVideos" class="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3" aria-live="polite" aria-busy="true">
+        <div class="aspect-video animate-pulse rounded-3xl bg-neutral-100"></div>
+        <div class="hidden aspect-video animate-pulse rounded-3xl bg-neutral-100 md:block"></div>
+        <div class="hidden aspect-video animate-pulse rounded-3xl bg-neutral-100 lg:block"></div>
       </div>
+      <p id="youtubeStatus" class="mt-5 text-sm text-neutral-500">正在载入最新视频…</p>
     </section>
   </main>
 
@@ -211,7 +203,7 @@
       </div>
       <div class="mt-14 flex flex-col gap-4 border-t border-neutral-300 pt-7 text-xs text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
         <p>© <span id="year"></span> Church in Toronto West. <span data-i18n="rights">版权所有。</span></p>
-        <p data-i18n="placeholderNotice">网站中的地址、联系方式与媒体均为占位内容。</p>
+        <p data-i18n="placeholderNotice">网站中的地址与联系方式为占位内容。</p>
       </div>
     </div>
   </footer>
@@ -219,21 +211,92 @@
   <script>
     const translations = {
       'zh-CN': {
-        navHome:'首页',navGatherings:'聚会信息',navEvents:'近期活动',navMedia:'媒体',navAbout:'关于我们',navContact:'联系我们',heroEyebrow:'欢迎回家',heroTitle:'在信仰里相遇，<br />在爱中一起成长。',heroText:'我们是一个扎根于多伦多西区、开放而温暖的基督徒群体。无论你来自哪里，都诚挚邀请你与我们一同敬拜、分享与同行。',heroPrimary:'查看聚会信息 ↓',heroSecondary:'第一次来？联系我们',nextGathering:'下一次主日聚会',sunday:'星期日',time:'上午 10:30',heroAddress:'[聚会地址占位符]<br />123 Example Street, Toronto, ON',details:'查看详情',gatherEyebrow:'欢迎相聚',gatherTitle:'聚会时间与地点',gatherIntro:'我们期待在线下或线上与你见面。以下信息均为清晰标注的占位内容，请在发布前替换。',inPerson:'线下',sundayService:'主日敬拜聚会',when:'时间',whenValue:'每周日上午 10:30–12:00',where:'地点',placeholderAddress:'聚会地址占位符',mapLink:'在地图中查看 ↗',online:'线上',zoomText:'无法到现场？欢迎通过 Zoom 与我们一起聚会。',meetingId:'会议 ID',passcode:'密码',joinZoom:'加入 Zoom 聚会 ↗',zoomNote:'占位链接 — 发布前请替换',eventsEyebrow:'活动预告',eventsTitle:'近期活动',eventsIntro:'在日常相聚中认识彼此，也在城市中活出关怀。欢迎你和家人朋友参加。',eventOneMonth:'七月',eventOneTime:'星期六 · 下午 4:00',eventOneTitle:'社区夏日烧烤',eventOneText:'在公园享用美食、游戏与轻松交流，适合所有年龄。',eventTwoMonth:'七月',eventTwoTime:'星期六 · 上午 10:00',eventTwoTitle:'社区关怀日',eventTwoText:'一起整理食物捐赠包，为西区有需要的邻舍送上支持。',eventThreeMonth:'八月',eventThreeTime:'星期五 · 晚上 7:00',eventThreeTitle:'青年敬拜之夜',eventThreeText:'诗歌、分享与真诚对话，为青年和大学生预备的夜晚。',eventNote:'示例活动与日期 — 请按实际安排更新',mediaEyebrow:'观看与聆听',mediaTitle:'媒体与信息分享',mediaIntro:'重温主日信息和教会生活片段。以下为 YouTube 嵌入视频内容。',videoOne:'教会视频 · 主日信息',videoTwo:'[YouTube 视频占位符 2] · 教会生活',footerText:'在多伦多西区，一起认识信仰、建立关系、服事社区。',email:'邮箱',phone:'电话',address:'地址',rights:'版权所有。',placeholderNotice:'网站中的地址、联系方式与媒体均为占位内容。'
+        navHome:'首页',navGatherings:'聚会信息',navEvents:'近期活动',navMedia:'媒体',navAbout:'关于我们',navContact:'联系我们',heroEyebrow:'欢迎回家',heroTitle:'在信仰里相遇，<br />在爱中一起成长。',heroText:'我们是一个扎根于多伦多西区、开放而温暖的基督徒群体。无论你来自哪里，都诚挚邀请你与我们一同敬拜、分享与同行。',heroPrimary:'查看聚会信息 ↓',heroSecondary:'第一次来？联系我们',nextGathering:'下一次主日聚会',sunday:'星期日',time:'上午 10:30',heroAddress:'[聚会地址占位符]<br />123 Example Street, Toronto, ON',details:'查看详情',gatherEyebrow:'欢迎相聚',gatherTitle:'聚会时间与地点',gatherIntro:'我们期待在线下或线上与你见面。以下信息均为清晰标注的占位内容，请在发布前替换。',inPerson:'线下',sundayService:'主日敬拜聚会',when:'时间',whenValue:'每周日上午 10:30–12:00',where:'地点',placeholderAddress:'聚会地址占位符',mapLink:'在地图中查看 ↗',online:'线上',zoomText:'无法到现场？欢迎通过 Zoom 与我们一起聚会。',meetingId:'会议 ID',passcode:'密码',joinZoom:'加入 Zoom 聚会 ↗',zoomNote:'占位链接 — 发布前请替换',eventsEyebrow:'活动预告',eventsTitle:'近期活动',eventsIntro:'在日常相聚中认识彼此，也在城市中活出关怀。欢迎你和家人朋友参加。',eventOneMonth:'七月',eventOneTime:'星期六 · 下午 4:00',eventOneTitle:'社区夏日烧烤',eventOneText:'在公园享用美食、游戏与轻松交流，适合所有年龄。',eventTwoMonth:'七月',eventTwoTime:'星期六 · 上午 10:00',eventTwoTitle:'社区关怀日',eventTwoText:'一起整理食物捐赠包，为西区有需要的邻舍送上支持。',eventThreeMonth:'八月',eventThreeTime:'星期五 · 晚上 7:00',eventThreeTitle:'青年敬拜之夜',eventThreeText:'诗歌、分享与真诚对话，为青年和大学生预备的夜晚。',eventNote:'示例活动与日期 — 请按实际安排更新',mediaEyebrow:'观看与聆听',mediaTitle:'媒体与信息分享',mediaIntro:'重温主日信息和教会生活片段。以下为 YouTube 嵌入视频内容。',videoOne:'教会视频 · 主日信息',videoTwo:'[YouTube 视频占位符 2] · 教会生活',footerText:'在多伦多西区，一起认识信仰、建立关系、服事社区。',email:'邮箱',phone:'电话',address:'地址',rights:'版权所有。',placeholderNotice:'网站中的地址与联系方式为占位内容。'
       },
       'zh-TW': {
-        navHome:'首頁',navGatherings:'聚會資訊',navEvents:'近期活動',navMedia:'媒體',navAbout:'關於我們',navContact:'聯絡我們',heroEyebrow:'歡迎回家',heroTitle:'在信仰裡相遇，<br />在愛中一起成長。',heroText:'我們是一個扎根於多倫多西區、開放而溫暖的基督徒群體。無論你來自哪裡，都誠摯邀請你與我們一同敬拜、分享與同行。',heroPrimary:'查看聚會資訊 ↓',heroSecondary:'第一次來？聯絡我們',nextGathering:'下一次主日聚會',sunday:'星期日',time:'上午 10:30',heroAddress:'[聚會地址預留位置]<br />123 Example Street, Toronto, ON',details:'查看詳情',gatherEyebrow:'歡迎相聚',gatherTitle:'聚會時間與地點',gatherIntro:'我們期待在線下或線上與你見面。以下資訊均為清楚標示的預留內容，請在發布前替換。',inPerson:'線下',sundayService:'主日敬拜聚會',when:'時間',whenValue:'每週日上午 10:30–12:00',where:'地點',placeholderAddress:'聚會地址預留位置',mapLink:'在地圖中查看 ↗',online:'線上',zoomText:'無法到現場？歡迎透過 Zoom 與我們一起聚會。',meetingId:'會議 ID',passcode:'密碼',joinZoom:'加入 Zoom 聚會 ↗',zoomNote:'預留連結 — 發布前請替換',eventsEyebrow:'活動預告',eventsTitle:'近期活動',eventsIntro:'在日常相聚中認識彼此，也在城市中活出關懷。歡迎你和親友參加。',eventOneMonth:'七月',eventOneTime:'星期六 · 下午 4:00',eventOneTitle:'社區夏日燒烤',eventOneText:'在公園享用美食、遊戲與輕鬆交流，適合所有年齡。',eventTwoMonth:'七月',eventTwoTime:'星期六 · 上午 10:00',eventTwoTitle:'社區關懷日',eventTwoText:'一起整理食物捐贈包，為西區有需要的鄰舍送上支持。',eventThreeMonth:'八月',eventThreeTime:'星期五 · 晚上 7:00',eventThreeTitle:'青年敬拜之夜',eventThreeText:'詩歌、分享與真誠對話，為青年和大學生預備的夜晚。',eventNote:'範例活動與日期 — 請按實際安排更新',mediaEyebrow:'觀看與聶聽',mediaTitle:'媒體與信息分享',mediaIntro:'重溫主日信息和教會生活片段。以下為 YouTube 嵌入影片內容。',videoOne:'教會影片 · 主日信息',videoTwo:'[YouTube 影片預留位置 2] · 教會生活',footerText:'在多倫多西區，一起認識信仰、建立關係、服事社區。',email:'電郵',phone:'電話',address:'地址',rights:'版權所有。',placeholderNotice:'網站中的地址、聯絡方式與媒體均為預留內容。'
+        navHome:'首頁',navGatherings:'聚會資訊',navEvents:'近期活動',navMedia:'媒體',navAbout:'關於我們',navContact:'聯絡我們',heroEyebrow:'歡迎回家',heroTitle:'在信仰裡相遇，<br />在愛中一起成長。',heroText:'我們是一個扎根於多倫多西區、開放而溫暖的基督徒群體。無論你來自哪裡，都誠摯邀請你與我們一同敬拜、分享與同行。',heroPrimary:'查看聚會資訊 ↓',heroSecondary:'第一次來？聯絡我們',nextGathering:'下一次主日聚會',sunday:'星期日',time:'上午 10:30',heroAddress:'[聚會地址預留位置]<br />123 Example Street, Toronto, ON',details:'查看詳情',gatherEyebrow:'歡迎相聚',gatherTitle:'聚會時間與地點',gatherIntro:'我們期待在線下或線上與你見面。以下資訊均為清楚標示的預留內容，請在發布前替換。',inPerson:'線下',sundayService:'主日敬拜聚會',when:'時間',whenValue:'每週日上午 10:30–12:00',where:'地點',placeholderAddress:'聚會地址預留位置',mapLink:'在地圖中查看 ↗',online:'線上',zoomText:'無法到現場？歡迎透過 Zoom 與我們一起聚會。',meetingId:'會議 ID',passcode:'密碼',joinZoom:'加入 Zoom 聚會 ↗',zoomNote:'預留連結 — 發布前請替換',eventsEyebrow:'活動預告',eventsTitle:'近期活動',eventsIntro:'在日常相聚中認識彼此，也在城市中活出關懷。歡迎你和親友參加。',eventOneMonth:'七月',eventOneTime:'星期六 · 下午 4:00',eventOneTitle:'社區夏日燒烤',eventOneText:'在公園享用美食、遊戲與輕鬆交流，適合所有年齡。',eventTwoMonth:'七月',eventTwoTime:'星期六 · 上午 10:00',eventTwoTitle:'社區關懷日',eventTwoText:'一起整理食物捐贈包，為西區有需要的鄰舍送上支持。',eventThreeMonth:'八月',eventThreeTime:'星期五 · 晚上 7:00',eventThreeTitle:'青年敬拜之夜',eventThreeText:'詩歌、分享與真誠對話，為青年和大學生預備的夜晚。',eventNote:'範例活動與日期 — 請按實際安排更新',mediaEyebrow:'觀看與聶聽',mediaTitle:'媒體與信息分享',mediaIntro:'重溫主日信息和教會生活片段。以下為 YouTube 嵌入影片內容。',videoOne:'教會影片 · 主日信息',videoTwo:'[YouTube 影片預留位置 2] · 教會生活',footerText:'在多倫多西區，一起認識信仰、建立關係、服事社區。',email:'電郵',phone:'電話',address:'地址',rights:'版權所有。',placeholderNotice:'網站中的地址與聯絡方式為預留內容。'
       },
       en: {
-        navHome:'Home',navGatherings:'Gatherings',navEvents:'Events',navMedia:'Media',navAbout:'About us',navContact:'Contact',heroEyebrow:'Welcome home',heroTitle:'Meet in faith.<br />Grow together in love.',heroText:"We are an open and welcoming Christian community rooted in Toronto's west end. Wherever you come from, you are warmly invited to worship, share, and journey with us.",heroPrimary:'View gathering details ↓',heroSecondary:'New here? Contact us',nextGathering:'Next Sunday gathering',sunday:'Sunday',time:'10:30 AM',heroAddress:'[Gathering address placeholder]<br />123 Example Street, Toronto, ON',details:'View details',gatherEyebrow:'Gather with us',gatherTitle:'Schedule & locations',gatherIntro:'We would love to meet you in person or online. All information below is clearly marked placeholder content—please replace it before publishing.',inPerson:'In person',sundayService:'Sunday worship gathering',when:'When',whenValue:'Every Sunday, 10:30 AM–12:00 PM',where:'Where',placeholderAddress:'Gathering address placeholder',mapLink:'View on map ↗',online:'Online',zoomText:"Can't make it in person? Join our gathering on Zoom.",meetingId:'Meeting ID',passcode:'Passcode',joinZoom:'Join Zoom gathering ↗',zoomNote:'Placeholder link — replace before publishing',eventsEyebrow:"What's happening",eventsTitle:'Recent events',eventsIntro:'Get to know one another in everyday gatherings and care for our city together. Friends and family are welcome.',eventOneMonth:'July',eventOneTime:'Saturday · 4:00 PM',eventOneTitle:'Community summer BBQ',eventOneText:'Food, games, and easy conversation in the park for all ages.',eventTwoMonth:'July',eventTwoTime:'Saturday · 10:00 AM',eventTwoTitle:'Community care day',eventTwoText:'Pack food donations together and support neighbours in need across the west end.',eventThreeMonth:'August',eventThreeTime:'Friday · 7:00 PM',eventThreeTitle:'Youth worship night',eventThreeText:'Music, stories, and honest conversation for youth and university students.',eventNote:'Sample events and dates — update to match your schedule',mediaEyebrow:'Watch & listen',mediaTitle:'Media & messages',mediaIntro:'Revisit Sunday messages and moments from church life through the YouTube videos below.',videoOne:'Church video · Sunday message',videoTwo:'[YouTube video placeholder 2] · Church life',footerText:"Knowing faith, building relationships, and serving our community in Toronto's west end.",email:'Email',phone:'Phone',address:'Address',rights:'All rights reserved.',placeholderNotice:'Addresses, contact details, and media on this site are placeholders.'
+        navHome:'Home',navGatherings:'Gatherings',navEvents:'Events',navMedia:'Media',navAbout:'About us',navContact:'Contact',heroEyebrow:'Welcome home',heroTitle:'Meet in faith.<br />Grow together in love.',heroText:"We are an open and welcoming Christian community rooted in Toronto's west end. Wherever you come from, you are warmly invited to worship, share, and journey with us.",heroPrimary:'View gathering details ↓',heroSecondary:'New here? Contact us',nextGathering:'Next Sunday gathering',sunday:'Sunday',time:'10:30 AM',heroAddress:'[Gathering address placeholder]<br />123 Example Street, Toronto, ON',details:'View details',gatherEyebrow:'Gather with us',gatherTitle:'Schedule & locations',gatherIntro:'We would love to meet you in person or online. All information below is clearly marked placeholder content—please replace it before publishing.',inPerson:'In person',sundayService:'Sunday worship gathering',when:'When',whenValue:'Every Sunday, 10:30 AM–12:00 PM',where:'Where',placeholderAddress:'Gathering address placeholder',mapLink:'View on map ↗',online:'Online',zoomText:"Can't make it in person? Join our gathering on Zoom.",meetingId:'Meeting ID',passcode:'Passcode',joinZoom:'Join Zoom gathering ↗',zoomNote:'Placeholder link — replace before publishing',eventsEyebrow:"What's happening",eventsTitle:'Recent events',eventsIntro:'Get to know one another in everyday gatherings and care for our city together. Friends and family are welcome.',eventOneMonth:'July',eventOneTime:'Saturday · 4:00 PM',eventOneTitle:'Community summer BBQ',eventOneText:'Food, games, and easy conversation in the park for all ages.',eventTwoMonth:'July',eventTwoTime:'Saturday · 10:00 AM',eventTwoTitle:'Community care day',eventTwoText:'Pack food donations together and support neighbours in need across the west end.',eventThreeMonth:'August',eventThreeTime:'Friday · 7:00 PM',eventThreeTitle:'Youth worship night',eventThreeText:'Music, stories, and honest conversation for youth and university students.',eventNote:'Sample events and dates — update to match your schedule',mediaEyebrow:'Watch & listen',mediaTitle:'Media & messages',mediaIntro:'Revisit Sunday messages and moments from church life through the YouTube videos below.',videoOne:'Church video · Sunday message',videoTwo:'[YouTube video placeholder 2] · Church life',footerText:"Knowing faith, building relationships, and serving our community in Toronto's west end.",email:'Email',phone:'Phone',address:'Address',rights:'All rights reserved.',placeholderNotice:'The address and contact details on this site are placeholders.'
       },
       fr: {
-        navHome:'Accueil',navGatherings:'Rencontres',navEvents:'Événements',navMedia:'Médias',navAbout:'À propos',navContact:'Contact',heroEyebrow:'Bienvenue chez vous',heroTitle:'Unis dans la foi.<br />Grandir ensemble dans l’amour.',heroText:"Nous sommes une communauté chrétienne ouverte et accueillante, enracinée dans l’ouest de Toronto. D’où que vous veniez, vous êtes chaleureusement invité à célébrer, partager et cheminer avec nous.",heroPrimary:'Voir les rencontres ↓',heroSecondary:'Une première visite ? Contactez-nous',nextGathering:'Prochaine rencontre du dimanche',sunday:'Dimanche',time:'10 h 30',heroAddress:'[Adresse de rencontre à remplacer]<br />123 Example Street, Toronto, ON',details:'Voir les détails',gatherEyebrow:'Rassemblons-nous',gatherTitle:'Horaires et lieux',gatherIntro:'Nous serions heureux de vous rencontrer sur place ou en ligne. Les renseignements ci-dessous sont des exemples à remplacer avant la publication.',inPerson:'Sur place',sundayService:'Culte du dimanche',when:'Quand',whenValue:'Chaque dimanche, de 10 h 30 à 12 h',where:'Où',placeholderAddress:'Adresse de rencontre à remplacer',mapLink:'Voir sur la carte ↗',online:'En ligne',zoomText:'Vous ne pouvez pas venir ? Participez à notre rencontre sur Zoom.',meetingId:'ID de réunion',passcode:'Code secret',joinZoom:'Rejoindre sur Zoom ↗',zoomNote:'Lien temporaire — à remplacer avant publication',eventsEyebrow:'À venir',eventsTitle:'Événements récents',eventsIntro:'Apprenons à nous connaître et prenons soin de notre ville. Vos proches sont les bienvenus.',eventOneMonth:'Juillet',eventOneTime:'Samedi · 16 h',eventOneTitle:'BBQ communautaire d’été',eventOneText:'Repas, jeux et échanges détendus au parc, pour tous les âges.',eventTwoMonth:'Juillet',eventTwoTime:'Samedi · 10 h',eventTwoTitle:'Journée d’entraide',eventTwoText:'Préparons des dons alimentaires pour soutenir nos voisins de l’ouest de Toronto.',eventThreeMonth:'Août',eventThreeTime:'Vendredi · 19 h',eventThreeTitle:'Soirée de louange jeunesse',eventThreeText:'Musique, témoignages et échanges sincères pour les jeunes et les étudiants.',eventNote:'Événements et dates à titre d’exemple — à adapter',mediaEyebrow:'À voir et à écouter',mediaTitle:'Médias et messages',mediaIntro:'Retrouvez les messages du dimanche et la vie de l’église dans les vidéos YouTube ci-dessous.',videoOne:'Vidéo de l’église · Message du dimanche',videoTwo:'[Vidéo YouTube temporaire 2] · Vie de l’église',footerText:'Découvrir la foi, créer des liens et servir notre communauté dans l’ouest de Toronto.',email:'Courriel',phone:'Téléphone',address:'Adresse',rights:'Tous droits réservés.',placeholderNotice:'Les adresses, coordonnées et médias de ce site sont temporaires.'
+        navHome:'Accueil',navGatherings:'Rencontres',navEvents:'Événements',navMedia:'Médias',navAbout:'À propos',navContact:'Contact',heroEyebrow:'Bienvenue chez vous',heroTitle:'Unis dans la foi.<br />Grandir ensemble dans l’amour.',heroText:"Nous sommes une communauté chrétienne ouverte et accueillante, enracinée dans l’ouest de Toronto. D’où que vous veniez, vous êtes chaleureusement invité à célébrer, partager et cheminer avec nous.",heroPrimary:'Voir les rencontres ↓',heroSecondary:'Une première visite ? Contactez-nous',nextGathering:'Prochaine rencontre du dimanche',sunday:'Dimanche',time:'10 h 30',heroAddress:'[Adresse de rencontre à remplacer]<br />123 Example Street, Toronto, ON',details:'Voir les détails',gatherEyebrow:'Rassemblons-nous',gatherTitle:'Horaires et lieux',gatherIntro:'Nous serions heureux de vous rencontrer sur place ou en ligne. Les renseignements ci-dessous sont des exemples à remplacer avant la publication.',inPerson:'Sur place',sundayService:'Culte du dimanche',when:'Quand',whenValue:'Chaque dimanche, de 10 h 30 à 12 h',where:'Où',placeholderAddress:'Adresse de rencontre à remplacer',mapLink:'Voir sur la carte ↗',online:'En ligne',zoomText:'Vous ne pouvez pas venir ? Participez à notre rencontre sur Zoom.',meetingId:'ID de réunion',passcode:'Code secret',joinZoom:'Rejoindre sur Zoom ↗',zoomNote:'Lien temporaire — à remplacer avant publication',eventsEyebrow:'À venir',eventsTitle:'Événements récents',eventsIntro:'Apprenons à nous connaître et prenons soin de notre ville. Vos proches sont les bienvenus.',eventOneMonth:'Juillet',eventOneTime:'Samedi · 16 h',eventOneTitle:'BBQ communautaire d’été',eventOneText:'Repas, jeux et échanges détendus au parc, pour tous les âges.',eventTwoMonth:'Juillet',eventTwoTime:'Samedi · 10 h',eventTwoTitle:'Journée d’entraide',eventTwoText:'Préparons des dons alimentaires pour soutenir nos voisins de l’ouest de Toronto.',eventThreeMonth:'Août',eventThreeTime:'Vendredi · 19 h',eventThreeTitle:'Soirée de louange jeunesse',eventThreeText:'Musique, témoignages et échanges sincères pour les jeunes et les étudiants.',eventNote:'Événements et dates à titre d’exemple — à adapter',mediaEyebrow:'À voir et à écouter',mediaTitle:'Médias et messages',mediaIntro:'Retrouvez les messages du dimanche et la vie de l’église dans les vidéos YouTube ci-dessous.',videoOne:'Vidéo de l’église · Message du dimanche',videoTwo:'[Vidéo YouTube temporaire 2] · Vie de l’église',footerText:'Découvrir la foi, créer des liens et servir notre communauté dans l’ouest de Toronto.',email:'Courriel',phone:'Téléphone',address:'Adresse',rights:'Tous droits réservés.',placeholderNotice:'L’adresse et les coordonnées de ce site sont temporaires.'
       }
     };
 
+    const youtubeUi = {
+      'zh-CN': { loading: '正在载入最新视频…', unavailable: '暂时无法载入视频，请前往 YouTube 频道查看。', watch: '在 YouTube 观看 ↗', dateLocale: 'zh-CN' },
+      'zh-TW': { loading: '正在載入最新影片…', unavailable: '暫時無法載入影片，請前往 YouTube 頻道查看。', watch: '在 YouTube 觀看 ↗', dateLocale: 'zh-TW' },
+      en: { loading: 'Loading the latest videos…', unavailable: 'Videos are temporarily unavailable. Please visit our YouTube channel.', watch: 'Watch on YouTube ↗', dateLocale: 'en-CA' },
+      fr: { loading: 'Chargement des dernières vidéos…', unavailable: 'Les vidéos sont temporairement indisponibles. Consultez notre chaîne YouTube.', watch: 'Voir sur YouTube ↗', dateLocale: 'fr-CA' }
+    };
+    const youtubeState = { language: 'zh-CN', data: null };
+
+    function renderYoutubeVideos() {
+      if (!youtubeState.data) return;
+      const container = document.getElementById('youtubeVideos');
+      const status = document.getElementById('youtubeStatus');
+      const ui = youtubeUi[youtubeState.language] || youtubeUi['zh-CN'];
+      const videos = youtubeState.data.videos || [];
+      container.replaceChildren();
+      container.setAttribute('aria-busy', 'false');
+      if (!videos.length) {
+        status.textContent = ui.unavailable;
+        status.classList.remove('hidden');
+        return;
+      }
+      for (const video of videos.slice(0, 3)) {
+        const article = document.createElement('article');
+        article.className = 'group';
+        const frameWrap = document.createElement('div');
+        frameWrap.className = 'aspect-video overflow-hidden rounded-3xl bg-neutral-100 shadow-soft ring-1 ring-neutral-200 transition group-hover:-translate-y-1 group-hover:ring-amber-300';
+        const frame = document.createElement('iframe');
+        frame.className = 'h-full w-full';
+        frame.src = video.embedUrl;
+        frame.title = video.title;
+        frame.loading = 'lazy';
+        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        frame.allowFullscreen = true;
+        frameWrap.appendChild(frame);
+        const title = document.createElement('h3');
+        title.className = 'mt-5 line-clamp-2 text-base font-semibold leading-6';
+        title.textContent = video.title;
+        const meta = document.createElement('div');
+        meta.className = 'mt-3 flex items-center justify-between gap-4 text-xs text-neutral-500';
+        const date = document.createElement('time');
+        date.dateTime = video.publishedAt;
+        date.textContent = new Intl.DateTimeFormat(ui.dateLocale, { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(video.publishedAt));
+        const link = document.createElement('a');
+        link.className = 'shrink-0 font-semibold text-amber-700 hover:text-amber-900';
+        link.href = video.url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = ui.watch;
+        meta.append(date, link);
+        article.append(frameWrap, title, meta);
+        container.appendChild(article);
+      }
+      status.classList.add('hidden');
+    }
+
+    async function loadYoutubeVideos() {
+      const status = document.getElementById('youtubeStatus');
+      const ui = youtubeUi[youtubeState.language] || youtubeUi['zh-CN'];
+      status.textContent = ui.loading;
+      try {
+        const response = await fetch('data/youtube-videos.json', { cache: 'no-cache' });
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        youtubeState.data = await response.json();
+      } catch (error) {
+        console.error('Unable to load YouTube videos:', error);
+        youtubeState.data = { videos: [] };
+      }
+      renderYoutubeVideos();
+    }
+
     function setLanguage(lang) {
       const dictionary = translations[lang] || translations['zh-CN'];
+      youtubeState.language = lang;
       document.documentElement.lang = lang;
       document.querySelectorAll('[data-i18n]').forEach((node) => {
         const value = dictionary[node.dataset.i18n];
@@ -248,6 +311,7 @@
         button.classList.toggle('border-neutral-200', !active);
         button.classList.toggle('text-neutral-600', !active);
       });
+      if (youtubeState.data) renderYoutubeVideos();
       try { localStorage.setItem('citw-language', lang); } catch (_) {}
     }
 
@@ -268,6 +332,7 @@
     let savedLanguage = 'zh-CN';
     try { savedLanguage = localStorage.getItem('citw-language') || 'zh-CN'; } catch (_) {}
     setLanguage(savedLanguage);
+    loadYoutubeVideos();
   </script>
 </body>
 </html>
