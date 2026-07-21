@@ -4,6 +4,14 @@
   "channelTitle": "CIT West",
   "videos": [
     {
+      "id": "pWflthneCPU",
+      "title": "Young People's sharing about summer camp",
+      "publishedAt": "2026-07-21T19:00:34Z",
+      "thumbnail": "https://i.ytimg.com/vi/pWflthneCPU/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=pWflthneCPU",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/pWflthneCPU"
+    },
+    {
       "id": "tEmuW2BgRYs",
       "title": "Church activities for teenagers",
       "publishedAt": "2026-07-17T00:34:20Z",
@@ -18,14 +26,6 @@
       "thumbnail": "https://i.ytimg.com/vi/RqblBS-yik8/maxresdefault.jpg",
       "url": "https://www.youtube.com/watch?v=RqblBS-yik8",
       "embedUrl": "https://www.youtube-nocookie.com/embed/RqblBS-yik8"
-    },
-    {
-      "id": "dAWze0w8bVc",
-      "title": "Church activities for teenagers",
-      "publishedAt": "2026-07-17T00:06:10Z",
-      "thumbnail": "https://i.ytimg.com/vi/dAWze0w8bVc/maxresdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=dAWze0w8bVc",
-      "embedUrl": "https://www.youtube-nocookie.com/embed/dAWze0w8bVc"
     }
   ]
 }
