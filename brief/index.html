@@ -1,2 +1,69 @@
-brief/
-└── index.html
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>教会生活简报 | Church Life Brief</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #f5f1e7;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.cover-link {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  line-height: 0;
+}
+
+.cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100svh - 20px);
+  object-fit: contain;
+  margin: auto;
+}
+
+@media (hover: hover) {
+  .cover-link:hover {
+    opacity: 0.97;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<a
+  class="cover-link"
+  href="https://church-life-brief.frankzhang-aliciahu.chatgpt.site/en"
+  aria-label="Open Church Life Brief"
+>
+  <img
+    class="cover"
+    src="../cover.png"
+    alt="教会生活简报 | Church Life Brief"
+  >
+</a>
+
+</body>
+</html>
