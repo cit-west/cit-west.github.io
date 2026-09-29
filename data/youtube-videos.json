@@ -4,6 +4,14 @@
   "channelTitle": "CIT West",
   "videos": [
     {
+      "id": "pNDaqQ-SP2w",
+      "title": " God by Caring for Others",
+      "publishedAt": "2026-09-29T00:05:51Z",
+      "thumbnail": "https://i.ytimg.com/vi/pNDaqQ-SP2w/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=pNDaqQ-SP2w",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/pNDaqQ-SP2w"
+    },
+    {
       "id": "VaQ_vGSClYg",
       "title": "The Testimony From Brother and sister ",
       "publishedAt": "2026-09-20T16:39:16Z",
@@ -18,14 +26,6 @@
       "thumbnail": "https://i.ytimg.com/vi/p5T4_icji38/maxresdefault.jpg",
       "url": "https://www.youtube.com/watch?v=p5T4_icji38",
       "embedUrl": "https://www.youtube-nocookie.com/embed/p5T4_icji38"
-    },
-    {
-      "id": "qHL2WuCE0xk",
-      "title": "American brothers' sharing",
-      "publishedAt": "2026-08-30T19:39:43Z",
-      "thumbnail": "https://i.ytimg.com/vi/qHL2WuCE0xk/maxresdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=qHL2WuCE0xk",
-      "embedUrl": "https://www.youtube-nocookie.com/embed/qHL2WuCE0xk"
     }
   ]
 }
