@@ -4,6 +4,14 @@
   "channelTitle": "CIT West",
   "videos": [
     {
+      "id": "_uMFbJ2ckvw",
+      "title": "IMG 9845",
+      "publishedAt": "2026-10-06T21:53:04Z",
+      "thumbnail": "https://i.ytimg.com/vi/_uMFbJ2ckvw/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=_uMFbJ2ckvw",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/_uMFbJ2ckvw"
+    },
+    {
       "id": "pNDaqQ-SP2w",
       "title": " God by Caring for Others",
       "publishedAt": "2026-09-29T00:05:51Z",
@@ -18,14 +26,6 @@
       "thumbnail": "https://i.ytimg.com/vi/VaQ_vGSClYg/maxresdefault.jpg",
       "url": "https://www.youtube.com/watch?v=VaQ_vGSClYg",
       "embedUrl": "https://www.youtube-nocookie.com/embed/VaQ_vGSClYg"
-    },
-    {
-      "id": "p5T4_icji38",
-      "title": "Love your neighbor as yourself",
-      "publishedAt": "2026-09-20T16:33:49Z",
-      "thumbnail": "https://i.ytimg.com/vi/p5T4_icji38/maxresdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=p5T4_icji38",
-      "embedUrl": "https://www.youtube-nocookie.com/embed/p5T4_icji38"
     }
   ]
 }
