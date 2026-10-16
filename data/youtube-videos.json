@@ -4,6 +4,14 @@
   "channelTitle": "CIT West",
   "videos": [
     {
+      "id": "L20NuJb6oik",
+      "title": "The Two Lost Sons",
+      "publishedAt": "2026-10-16T22:06:48Z",
+      "thumbnail": "https://i.ytimg.com/vi/L20NuJb6oik/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=L20NuJb6oik",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/L20NuJb6oik"
+    },
+    {
       "id": "_uMFbJ2ckvw",
       "title": "Christ has great power in your heart",
       "publishedAt": "2026-10-06T21:53:04Z",
@@ -18,14 +26,6 @@
       "thumbnail": "https://i.ytimg.com/vi/pNDaqQ-SP2w/maxresdefault.jpg",
       "url": "https://www.youtube.com/watch?v=pNDaqQ-SP2w",
       "embedUrl": "https://www.youtube-nocookie.com/embed/pNDaqQ-SP2w"
-    },
-    {
-      "id": "VaQ_vGSClYg",
-      "title": "The Testimony From Brother and sister ",
-      "publishedAt": "2026-09-20T16:39:16Z",
-      "thumbnail": "https://i.ytimg.com/vi/VaQ_vGSClYg/maxresdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=VaQ_vGSClYg",
-      "embedUrl": "https://www.youtube-nocookie.com/embed/VaQ_vGSClYg"
     }
   ]
 }
