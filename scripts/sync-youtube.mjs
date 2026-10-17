@@ -90,7 +90,7 @@ const heartbeatPath = resolve("data/youtube-heartbeat.json");
 const dataChanged = await writeJsonIfChanged(dataPath, {
   channelId: channel.id,
   channelHandle: `@${CHANNEL_HANDLE}`,
-  channelTitle: channel.snippet?.title || "Church in Toronto West",
+  channelTitle: channel.snippet?.title || "Church in Toronto (West District)",
   videos,
 });
 
