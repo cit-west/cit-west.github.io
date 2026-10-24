@@ -2,8 +2,8 @@
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>周三校园福音事奉交通</title>
 <style>:root{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans SC",sans-serif;color:#233044;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}header{background:#18314b;color:white;padding:24px max(20px,calc((100% - 1100px)/2))}header h1{margin:0 0 8px}main{max-width:1100px;margin:auto;padding:24px 16px 80px}.toolbar,.card{background:white;border:1px solid #e1e6ee;border-radius:14px;padding:20px;margin:16px 0;box-shadow:0 3px 14px #15243a0a}.toolbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap}select,input,textarea,button{font:inherit;border:1px solid #cbd5e1;border-radius:8px;padding:10px}select{min-width:210px}button{cursor:pointer;background:#18314b;color:white;border:0}button.secondary{background:#e9eef5;color:#18314b}h2{margin:0 0 12px;font-size:1.2rem}h3{font-size:1rem;margin:18px 0 8px;color:#365778}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px}.stat{background:#f2f6fb;border-radius:9px;padding:12px}.names{line-height:1.9;white-space:pre-wrap}.hint{color:#65748a;font-size:.9rem}.tag{display:inline-block;background:#fff3d8;color:#815900;padding:4px 10px;border-radius:20px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.item{padding:12px 0;border-top:1px solid #e6eaf0}.item p{margin:5px 0;line-height:1.65}textarea{width:100%;min-height:90px}input[type=text]{width:100%}@media(max-width:650px){header{padding:24px 18px}.toolbar{align-items:stretch;flex-direction:column}select{width:100%}}</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0/dist/umd/supabase.min.js"></script></head>
 <body><header><h1>周三校园福音事奉交通</h1><div>Church in Toronto · West District ｜ 周五聚会、校园福音、Club 建设与人员照顾</div></header>
-<main><section class="card"><h2>云端登录</h2><input id="email" type="email" placeholder="登录邮箱"><button id="login">发送登录邮件</button><button id="signout" class="secondary">退出</button><p id="cloud" class="hint">正在检查登录状态</p><button id="migrate" class="secondary" style="display:none">首次上传本机历史资料</button></section><div id="secureContent" style="display:none"><div class="toolbar"><label for="week">交通日期</label><select id="week"></select><span id="source" class="hint"></span><button id="nextWeek">建立下周记录</button><button class="secondary" id="export">导出本周 JSON</button><button class="secondary" id="backup">导出全部备份</button><label class="secondary" style="cursor:pointer;padding:10px;border-radius:8px;background:#e9eef5">导入备份<input type="file" id="import" accept=".json" hidden></label></div>
-<p class="hint">第一版为独立资料页。历史资料来自原始交通预备稿；空缺不代表没有参加。编辑内容仅保存在当前浏览器，必须导出备份才能跨设备转移。此页面位于公开网站，请勿填写电话、住址、医疗或其他敏感个人情况。</p>
+<main><section class="card"><h2>云端登录</h2><input id="email" type="email" placeholder="登录邮箱"><button id="login">发送登录邮件</button><input id="password" type="password" autocomplete="current-password" placeholder="登录密码"><button id="passwordLogin" class="secondary">密码登录</button><button id="setPassword" class="secondary" style="display:none">设置／修改密码</button><button id="signout" class="secondary">退出</button><p id="cloud" class="hint">正在检查登录状态</p><button id="migrate" class="secondary" style="display:none">首次上传本机历史资料</button></section><div id="secureContent" style="display:none"><div class="toolbar"><label for="week">交通日期</label><select id="week"></select><span id="source" class="hint"></span><button id="nextWeek">建立下周记录</button><button class="secondary" id="export">导出本周 JSON</button><button class="secondary" id="backup">导出全部备份</button><label class="secondary" style="cursor:pointer;padding:10px;border-radius:8px;background:#e9eef5">导入备份<input type="file" id="import" accept=".json" hidden></label></div>
+<p class="hint">第一版为独立资料页。历史资料来自原始交通预备稿；空缺不代表没有参加。编辑内容将同步到受授权保护的云端数据库，并在本机保留临时副本。请定期导出 JSON 备份。切勿填写不必要的敏感个人信息。</p>
 <div class="grid" id="summary"></div>
 <section class="card"><h2>周五聚会人员记录</h2><div id="people" class="grid"></div><p class="hint">原始“未出席”名单可能包含长期邀请对象，并非每位都已确认本周应到会；请逐人核实。</p></section>
 <section class="card"><h2>随时记录本周发生的事件</h2><p class="hint">记录时自动标注时间，事件归入当前选中的周三。支持记录周五聚会情况、摆桌、Club、接触与跟进；不需要等到周三。</p><div class="grid"><label>事件日期<input type="date" id="eventDate"></label><label>事件类别<select id="eventCategory"></select></label></div><textarea id="eventText" placeholder="发生了什么？有哪些人参与？后续需要怎样跟进？"></textarea><button id="addEvent">保存事件</button><div id="eventsLog"></div></section>
@@ -14,19 +14,13 @@
 </div></main>
 <script>
 const categories=['周五聚会','福音聚会','Club 建设','摆桌传福音','单张与海报','校园大型活动','福音朋友照顾','初信圣徒照顾','圣徒特别情形','教会特别活动','其他'];
-const original={
-'2026-09-23':{friday:'2026-09-18',offline:'黑博泉、陈民生、袁睿、Brendo、崔德宇、王犇、曾倩文、区烨文、Bryan、俞亦哲、Alex、王晓禾、杨中兴、晏仲栗、王统业、臧驿达、满秋显、李倩及两个女儿、Delina、文妈妈、文佳颖、Stephen、John、Phili、刘健、Derrick、Milky、Lucy 范、黄凯荣、Ricardo、胡立新',online:'西坎妈妈、王少莹',workers:'王统业、杨中兴、张凡',absent:'覃伟民、Kevin、张辰、Wayne、周润泽、Mike、keire、陈韫心、宋军、Pablo、陈昊成、袁梦旭、陈其周、佳瑞、杨陈宇轩',tasks:[['Club 建设','YFS 已通过；Bryan 和晓禾办理银行账户、申请首笔报销；Home Club 财务管理会议','待跟进'],['Club 建设','SCLD 待批复','待跟进'],['摆桌传福音','9 月 17 日 Club 摆桌已批复；协调学生与圣徒参加','已记录'],['福音聚会','9 月 25 日中秋福音爱宴：清理、采买、食物与邀请安排','待跟进'],['单张与海报','累计发单张目标 10000；本周记录又发 1500','已记录'],['福音朋友照顾','跟进夏萍、崔德宇、王犇、周润泽、李倩等邀请对象','待跟进']]},
-'2026-09-30':{friday:'2026-09-25',offline:'Pablo、Olarlu、刘丰瑞、李林安、Lisa Liu、Jenny、Nickson、郑林玟、Grace、Sindy、Christina、崔德宇、俞亦哲、Alex、王晓禾、杨中兴、晏仲栗、王统业、臧驿达、Delina、文妈妈、文佳颖、John、覃伟民、Kevin、闻西坎、西坎妈妈、宋军、宋彦、韩丽、金佑佐、胡立新',online:'Leo、林艺达',workers:'王统业、杨中兴、张凡',absent:'满秋显、李倩及两个女儿、王犇、曾倩文、区烨文、Bryan、Phili、刘健、Derrick、Milky、Lucy 范、黄凯荣、Ricardo、黑博泉、陈民生、袁睿、Brendo、张辰、Wayne、周润泽、Mike、keire、陈韫心、陈昊成、袁梦旭、陈其周、佳瑞、杨陈宇轩、王少莹',tasks:[['Club 建设','YFS 银行账户、摆桌申请、SCLD 批复继续跟进','待跟进'],['福音聚会','回顾 9 月 25 日中秋福音爱宴及见证安排','已记录'],['单张与海报','本周交通稿记录发出约 2000 张；臧驿达近 1000 张','已记录'],['福音朋友照顾','检讨已邀请对象的回应和后续接触','待跟进']]},
-'2026-10-07':{friday:'2026-10-02',offline:'王犇、曾倩文、Pablo、刘丰瑞、俞亦哲、Alex、Bryan、Ryan、王晓禾、杨中兴、晏仲栗、臧驿达、Delina、胡立新',online:'王统业、Leo、林艺达',workers:'王统业、杨中兴、张凡',absent:'文妈妈、文佳颖、John、覃伟民、Kevin、闻西坎、西坎妈妈、宋军、宋彦、韩丽、金佑佐、李林安、Lisa Liu、Jenny、Nickson、郑林玟、Grace、Sindy、Christina、崔德宇、Olarlu、李倩及两个女儿、Phili、刘健、Derrick、Milky、陈昊成、杨陈宇轩',tasks:[['Club 建设','YFS 银行账户；10 月 20 日必要会议；申请摆桌','待跟进'],['Club 建设','SCLD 已获批复','已完成'],['福音聚会','10 月 11 日感恩节福音爱宴：见证、邀请、接触','待跟进'],['单张与海报','计划分发 500 张单张并制作海报','待跟进']]},
-'2026-10-14':{friday:'',offline:'',online:'',workers:'',absent:'',uncertain:true,tasks:[['其他','上传的 10 月 14 日文档内部日期及内容与 10 月 7 日相同，等待核实后补录','待核实']]},
-'2026-10-21':{friday:'2026-10-16',offline:'崔德宇、俞亦哲、Alex、Bryan、王晓禾、杨中兴、晏仲栗、王统业、臧驿达、Delina、Jonathan',online:'陈昊成、西坎妈妈、杨陈宇轩',workers:'王统业、杨中兴、张凡、王少莹',absent:'周方、Ryan、王犇、曾倩文、Pablo、刘丰瑞、文妈妈、文佳颖、John、覃伟民、Kevin、闻西坎、宋军、宋彦、韩丽、金佑佐、李林安、Lisa Liu、Jenny、Nickson、郑林玟、Grace、Sindy、Christina、Olarlu、李倩及两个女儿、区烨文、Phili、刘健、Derrick、Milky、Lucy 范、黄凯荣、Ricardo、黑博泉、陈民生、袁睿、Brendo、张辰、Wayne、周润泽、Mike、keire、陈韫心、袁梦旭、陈其周、佳瑞',tasks:[['摆桌传福音','本学期首次摆桌；王晓禾、俞亦哲、晏仲栗、施馨恩参与','已记录'],['Club 建设','YFS 账户及 10 月 20 日必要会议（王晓禾已参加）','待跟进'],['Club 建设','申请下周二摆桌；约 Bryan、晓禾交通账户管理','待跟进'],['教会特别活动','10 月 31 日一天三次聚会活动安排','待跟进']]}
-};
+const original={};
 const clone=x=>JSON.parse(JSON.stringify(x));let data=clone(original);
 try{let stored=JSON.parse(localStorage.getItem('wednesday-campus-v1')||'null');if(stored&&typeof stored==='object')data=Object.assign(data,stored)}catch(e){}
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let date='2026-10-21';function persist(){try{localStorage.setItem('wednesday-campus-v1',JSON.stringify(data));$('saved').textContent='已保存于本机浏览器；请定期导出备份。'}catch(e){$('saved').textContent='本机存储失败，请立即导出备份。'}}
 function count(s){return s?s.split('、').filter(Boolean).length:0}
-function render(){const d=data[date];d.events=d.events||[];$('week').innerHTML=Object.keys(data).sort().reverse().map(x=>'<option value="'+esc(x)+'">'+esc(x)+'（周三）</option>').join('');$('week').value=date;$('source').textContent=d.uncertain?'原稿日期疑似重复，待核实':'对应周五：'+(d.friday||'待补录');$('summary').innerHTML=[['线下名单项',count(d.offline)],['线上名单项',count(d.online)],['未到会名单项',count(d.absent)],['本周事项',d.tasks.length]].map(x=>'<div class="stat"><strong>'+x[1]+'</strong><br>'+x[0]+'</div>').join('');
+function render(){if(!data[date]){date=Object.keys(data).sort().reverse()[0];if(!date)return;}const d=data[date];d.events=d.events||[];$('week').innerHTML=Object.keys(data).sort().reverse().map(x=>'<option value="'+esc(x)+'">'+esc(x)+'（周三）</option>').join('');$('week').value=date;$('source').textContent=d.uncertain?'原稿日期疑似重复，待核实':'对应周五：'+(d.friday||'待补录');$('summary').innerHTML=[['线下名单项',count(d.offline)],['线上名单项',count(d.online)],['未到会名单项',count(d.absent)],['本周事项',d.tasks.length]].map(x=>'<div class="stat"><strong>'+x[1]+'</strong><br>'+x[0]+'</div>').join('');
 $('people').innerHTML=[['offline','线下参加'],['online','线上参加'],['workers','校园服事同工'],['absent','未到会（待核实）']].map(([k,label])=>'<div><h3>'+label+'</h3><textarea data-person="'+k+'" aria-label="'+label+'">'+esc(d[k]||'')+'</textarea></div>').join('');
 $('tasks').innerHTML=d.tasks.map((t,i)=>'<div class="item"><div class="row"><strong>'+esc(t[0])+'</strong><select data-status="'+i+'">'+['待跟进','进行中','已完成','已记录','待核实'].map(s=>'<option '+(s===t[2]?'selected':'')+'>'+s+'</option>').join('')+'</select></div><p>'+esc(t[1])+'</p><div class="row"><span class="hint">负责人：'+esc(t[3]||'未指定')+'</span><button class="secondary" data-delete="'+i+'">删除</button></div></div>').join('')||'<p class="hint">尚无事项</p>';
 $('topics').innerHTML=categories.map(c=>'<div class="item"><h3>'+esc(c)+'</h3><div class="hint">'+esc(d.tasks.filter(t=>t[0]===c).map(t=>t[1]).join('；')||'暂无记录')+'</div></div>').join('');$('eventsLog').innerHTML=d.events.map((ev,i)=>'<div class="item"><strong>'+esc(ev.day)+' · '+esc(ev.category)+'</strong><p>'+esc(ev.text)+'</p><button class="secondary" data-event-delete="'+i+'">删除</button></div>').join('')||'<p class="hint">尚无事件记录</p>';$('notes').value=d.notes||'';$('category').innerHTML=categories.map(c=>'<option>'+c+'</option>').join('');}
@@ -49,12 +43,53 @@ const {data:grant,error:gerr}=await client.from('campus_editors').select('user_i
 if(gerr||!grant){$('cloud').textContent='已登录，但尚未获得访问授权';$('secureContent').style.display='none';return}
 canEdit=true;const {data:rows,error}=await client.from('campus_weekly_records').select('week_date,payload');
 if(error){$('cloud').textContent='云端读取失败：'+error.message;return}
-for(const item of rows)data[item.week_date]=item.payload;
-$('secureContent').style.display='block';$('migrate').style.display='inline-block';$('cloud').textContent='已授权登录，云端记录 '+rows.length+' 周';render()}
+for(const item of rows)data[item.week_date]=item.payload; if(!data[date])date=Object.keys(data).sort().reverse()[0]||date;
+$('secureContent').style.display='block';$('migrate').style.display='inline-block';$('setPassword').style.display='inline-block';$('cloud').textContent='已授权登录，云端记录 '+rows.length+' 周';render()}
 $('login').onclick=async()=>{const email=$('email').value.trim();if(!email)return;const {error}=await client.auth.signInWithOtp({email,options:{shouldCreateUser:false,emailRedirectTo:location.origin+location.pathname}});$('cloud').textContent=error?error.message:'登录邮件已发送'};
-$('signout').onclick=async()=>{await client.auth.signOut();canEdit=false;$('secureContent').style.display='none';$('cloud').textContent='已退出'};
+$('signout').onclick=async()=>{await client.auth.signOut();canEdit=false;$('secureContent').style.display='none';$('setPassword').style.display='none';$('cloud').textContent='已退出'};
 const localPersist=persist;
-persist=function(){localPersist();if(!canEdit)return;const week_date=date,payload=clone(data[date]);client.auth.getUser().then(({data:{user}})=>client.from('campus_weekly_records').upsert({week_date,payload,updated_by:user.id},{onConflict:'week_date'})).then(({error})=>$('cloud').textContent=error?'云端保存失败：'+error.message:'云端已保存 '+week_date).catch(e=>$('cloud').textContent='云端保存失败：'+e.message)};
+const saveStates=new Map();
+async function flushWeek(week){
+ const state=saveStates.get(week);if(!state||state.running||!canEdit)return;
+ state.running=true;
+ try{
+  while(state.saved<state.version&&canEdit){
+   const target=state.version,payload=clone(data[week]);
+   $('cloud').textContent='正在保存云端：'+week;
+   const {data:{user},error:authError}=await client.auth.getUser();
+   if(authError||!user)throw Error('登录已失效');
+   const {error}=await client.from('campus_weekly_records').upsert({week_date:week,payload,updated_by:user.id},{onConflict:'week_date'});
+   if(error)throw error;
+   state.saved=target;
+  }
+  if(canEdit)$('cloud').textContent='云端已保存 '+week;
+ }catch(e){$('cloud').textContent='云端保存失败（本机副本仍在）：'+e.message+'。请导出全部备份并重试。';}
+ finally{state.running=false;}
+}
+persist=function(){
+ localPersist();if(!canEdit)return;
+ const week=date;if(!week||!data[week])return;
+ let state=saveStates.get(week);if(!state){state={version:0,saved:0,running:false,timer:null};saveStates.set(week,state);}
+ state.version++;clearTimeout(state.timer);
+ $('cloud').textContent='修改已保存在本机，等待同步：'+week;
+ state.timer=setTimeout(()=>flushWeek(week),650);
+};
+$('passwordLogin').onclick=async()=>{
+ const email=$('email').value.trim(),password=$('password').value;
+ if(!email||!password){$('cloud').textContent='请输入邮箱和密码';return;}
+ const {error}=await client.auth.signInWithPassword({email,password});
+ $('cloud').textContent=error?'密码登录失败：'+error.message:'密码登录成功，正在读取云端';
+ if(!error)connect();
+};
+$('setPassword').onclick=async()=>{
+ if(!canEdit)return;
+ const password=prompt('请输入新的登录密码（至少 12 位；请勿在聊天中发送密码）');
+ if(password===null)return;
+ if(password.length<12){$('cloud').textContent='密码至少需要 12 位';return;}
+ const {error}=await client.auth.updateUser({password});
+ $('cloud').textContent=error?'设置密码失败：'+error.message:'登录密码设置成功，以后可使用密码登录';
+ $('password').value='';
+};
 let migrationReady=false;
 $('migrate').onclick=async()=>{
  if(!migrationReady){
@@ -84,5 +119,5 @@ $('migrate').onclick=async()=>{
  finally{$('migrate').disabled=false;}
 };
 client.auth.onAuthStateChange((event)=>{if(event==='SIGNED_IN')setTimeout(connect,0)});
-render();connect();
+connect();
 </script></body></html>
