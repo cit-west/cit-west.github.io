@@ -55,7 +55,34 @@ $('login').onclick=async()=>{const email=$('email').value.trim();if(!email)retur
 $('signout').onclick=async()=>{await client.auth.signOut();canEdit=false;$('secureContent').style.display='none';$('cloud').textContent='已退出'};
 const localPersist=persist;
 persist=function(){localPersist();if(!canEdit)return;const week_date=date,payload=clone(data[date]);client.auth.getUser().then(({data:{user}})=>client.from('campus_weekly_records').upsert({week_date,payload,updated_by:user.id},{onConflict:'week_date'})).then(({error})=>$('cloud').textContent=error?'云端保存失败：'+error.message:'云端已保存 '+week_date).catch(e=>$('cloud').textContent='云端保存失败：'+e.message)};
-$('migrate').onclick=async()=>{if(!confirm('上传所有本机历史记录到云端？同日期云端记录将被覆盖。'))return;const {data:{user}}=await client.auth.getUser();const records=Object.entries(data).map(([week_date,payload])=>({week_date,payload,updated_by:user.id}));const {error}=await client.from('campus_weekly_records').upsert(records,{onConflict:'week_date'});$('cloud').textContent=error?'上传失败：'+error.message:'已上传 '+records.length+' 周历史资料'};
+let migrationReady=false;
+$('migrate').onclick=async()=>{
+ if(!migrationReady){
+  migrationReady=true;
+  $('migrate').textContent='确认上传历史资料（第二次点击）';
+  $('cloud').textContent='请确认已导出全部备份。再次点击按钮才会上传；已存在的云端日期不会覆盖。';
+  return;
+ }
+ migrationReady=false;
+ $('migrate').disabled=true;
+ $('migrate').textContent='正在上传，请稍候…';
+ try{
+  const {data:{user},error:userError}=await client.auth.getUser();
+  if(userError||!user)throw Error('登录状态失效，请重新登录');
+  const {data:existing,error:readError}=await client.from('campus_weekly_records').select('week_date');
+  if(readError)throw readError;
+  const dates=new Set((existing||[]).map(x=>x.week_date));
+  const records=Object.entries(data).filter(([week_date])=>!dates.has(week_date)).map(([week_date,payload])=>({week_date,payload,updated_by:user.id}));
+  if(records.length){
+   const {error}=await client.from('campus_weekly_records').insert(records);
+   if(error)throw error;
+  }
+  const {count,error:countError}=await client.from('campus_weekly_records').select('week_date',{count:'exact',head:true});
+  $('cloud').textContent=countError?'已上传 '+records.length+' 周；请检查云端总数':'上传成功：新增 '+records.length+' 周，云端共 '+count+' 周；跳过已有 '+dates.size+' 周';
+  $('migrate').textContent='历史资料已检查（再次点击可检查缺失周）';
+ }catch(e){$('cloud').textContent='上传未完成：'+e.message;$('migrate').textContent='重新检查并上传历史资料';}
+ finally{$('migrate').disabled=false;}
+};
 client.auth.onAuthStateChange((event)=>{if(event==='SIGNED_IN')setTimeout(connect,0)});
 render();connect();
 </script></body></html>
