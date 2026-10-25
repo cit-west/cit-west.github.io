@@ -4,6 +4,14 @@
   "channelTitle": "CIT West",
   "videos": [
     {
+      "id": "DOo6MZabF1c",
+      "title": "For when I am weak, then l am strong.",
+      "publishedAt": "2026-10-25T20:53:19Z",
+      "thumbnail": "https://i.ytimg.com/vi/DOo6MZabF1c/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=DOo6MZabF1c",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/DOo6MZabF1c"
+    },
+    {
       "id": "L20NuJb6oik",
       "title": "The Two Lost Sons",
       "publishedAt": "2026-10-16T22:06:48Z",
@@ -18,14 +26,6 @@
       "thumbnail": "https://i.ytimg.com/vi/_uMFbJ2ckvw/maxresdefault.jpg",
       "url": "https://www.youtube.com/watch?v=_uMFbJ2ckvw",
       "embedUrl": "https://www.youtube-nocookie.com/embed/_uMFbJ2ckvw"
-    },
-    {
-      "id": "pNDaqQ-SP2w",
-      "title": " God by Caring for Others",
-      "publishedAt": "2026-09-29T00:05:51Z",
-      "thumbnail": "https://i.ytimg.com/vi/pNDaqQ-SP2w/maxresdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=pNDaqQ-SP2w",
-      "embedUrl": "https://www.youtube-nocookie.com/embed/pNDaqQ-SP2w"
     }
   ]
 }
