@@ -4,6 +4,14 @@
   "channelTitle": "CIT West",
   "videos": [
     {
+      "id": "GtZeNyYUFZs",
+      "title": "Let the Lord write words upon your heart",
+      "publishedAt": "2026-11-09T17:42:02Z",
+      "thumbnail": "https://i.ytimg.com/vi/GtZeNyYUFZs/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=GtZeNyYUFZs",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/GtZeNyYUFZs"
+    },
+    {
       "id": "Sg1C_XrJDCk",
       "title": "Motivated by the love of Christ, live a life of evangelism",
       "publishedAt": "2026-11-07T05:44:09Z",
@@ -18,14 +26,6 @@
       "thumbnail": "https://i.ytimg.com/vi/DOo6MZabF1c/maxresdefault.jpg",
       "url": "https://www.youtube.com/watch?v=DOo6MZabF1c",
       "embedUrl": "https://www.youtube-nocookie.com/embed/DOo6MZabF1c"
-    },
-    {
-      "id": "L20NuJb6oik",
-      "title": "The Two Lost Sons",
-      "publishedAt": "2026-10-16T22:06:48Z",
-      "thumbnail": "https://i.ytimg.com/vi/L20NuJb6oik/maxresdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=L20NuJb6oik",
-      "embedUrl": "https://www.youtube-nocookie.com/embed/L20NuJb6oik"
     }
   ]
 }
